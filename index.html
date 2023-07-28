@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vailama</title>
+
+    <meta property="og:title" content="Vailama" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vailama.damien-doussaud.com/" />
+    <meta property="og:image" content="https://vailama.damien-doussaud.com/cover.png" />
+
+
+    <link rel="preload" as="fetch" href="/assets/gameboy.gltf" >
+    <link rel="preload" as="fetch" href="/assets/gameboy.bin" >
+    <link rel="preload" as="fetch" href="/assets/gameboy.jpg" >
+
+    <link rel="preload" as="fetch" href="/assets/ships.glb" >
+    
+    <link rel="preload" as="fetch" href="/assets/game-background.glb" >
+
+    <style>
+      .start-screen {
+        opacity: 0;
+      }
+      .score-screen {
+        opacity: 0;
+      }
+      .ui {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <canvas></canvas>
+      <div class="joystick"></div>
+      <div class="start-screen">
+        <h1>Vailama</h1>
+        <p>Press arrow<br>or click<br>to start</p>
+        <span>by <a href="https://damien-doussaud.com/" target="_blank">damien-doussaud.com</a></span>
+      </div>
+      <div class="score-screen">
+        <h2>Game over</h2>
+
+        <p>Score <span class="final-score"></span>pts</p><br>
+
+        <span class="credits">
+          Credits:<br><br>
+          
+          <a href="https://damien-doussaud.com/" target="_blank">Damien Doussaud</a><br>
+          - development<br>
+          - low poly Game boy model<br>
+          - ships and mountains models<br><br>
+
+          <a href="https://sketchfab.com/3d-models/gameboy-dmg-01-29849a15fe0a40a6a18e01c9d544a0ed" target="_blank">Let's Do 3D</a><br>
+          - high poly Game boy model<br><br>
+        </span>
+      </div>
+      <div class="ui">
+        <span class="life"></span>
+        <span class="score"></span>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
