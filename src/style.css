@@ -157,14 +157,42 @@ canvas {
 .ui {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: calc(50vw - 25vh);
+  width: 50vh;
   height: 100%;
 
   color: #99C46E;
 
   opacity: 0;
   pointer-events: none;
+
+  /* border: 8px solid rgba(153, 196, 110, 0.25);
+  border-top: none;
+  border-bottom: none; */
+}
+
+.ui:before, .ui:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: calc(50vw - 25vh);
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  transition: 1s ease-in-out;
+  opacity: 0;
+}
+
+.ui.is-enabled:before, .ui.is-enabled:after  {
+  opacity: 1;
+}
+
+.ui:before {
+  left: calc(25vh - 50vw - 8px);
+}
+
+.ui:after {
+  right: calc(25vh - 50vw - 8px);
 }
 
 .ui.is-enabled {

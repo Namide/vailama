@@ -73,12 +73,12 @@ export class BadShip extends THREE.Group {
     this.scale.multiplyScalar(0.2)
 
     this.position.x = this.bb.left * 2
-    this.position.y = this.bb.top * 1.1
+    this.position.y = this.bb.top * 1.3
     this.tweens.push(new Tween(
       this.position as TweenObject,
       [0, 0.3, 0.5, 0.7, 0.8, 0.9, 1.1, 1.2]
       .map((y, index) => ({
-        x: this.bb.width * (index % 2) * 2 + this.bb.left * 2,
+        x: this.bb.width * (index % 2) + this.bb.left,
         y: this.bb.top - y * this.bb.height
       })),
       {

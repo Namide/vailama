@@ -115,11 +115,11 @@ export class Player extends THREE.Group {
   }
 
   fixPosition() {
-    // if (this.position.x < this.bb.left) {
-    //   this.position.x = this.bb.left
-    // } else if (this.position.x > this.bb.right) {
-    //   this.position.x = this.bb.right
-    // }
+    if (this.position.x < this.bb.left) {
+      this.position.x = this.bb.left
+    } else if (this.position.x > this.bb.right) {
+      this.position.x = this.bb.right
+    }
 
     if (this.position.y > this.bb.top) {
       this.position.y = this.bb.top
