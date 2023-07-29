@@ -1,11 +1,22 @@
 import * as THREE from 'three';
 import { BoundingBox } from '../utils/BoundingBox';
 import { Explode } from './Explode';
+import { Tween, easeOutExpo } from 'twon';
 // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const size = [0.04, 0.15]
-const geometry = new THREE.BoxGeometry( size[0], size[1], size[0] );
-const material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+// const geometry = new THREE.BoxGeometry( size[0], size[1], size[0] );
+// const material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+
+const map = new THREE.TextureLoader().load( '/assets/bullet.png' );
+const material = new THREE.SpriteMaterial( {
+  map: map,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+
+  depthTest: false,
+  transparent: true
+} );
 
 export class Bullet extends THREE.Group {
 
@@ -27,8 +38,18 @@ export class Bullet extends THREE.Group {
     this.velocity = velocity
     this.height = size[1]
     
-    const mesh = new THREE.Mesh( geometry, material );
+    const mesh = new THREE.Sprite( material );
+    mesh.scale.set(1, 1, 1)
     this.add(mesh)
+
+    new Tween(
+      mesh.scale as { x: number, y: number, z: number },
+      [{ x: 0.15, y: 0.15, z: 1 }, { x: 0.15, y: 0.5, z: 1 }],
+      {
+        duration: 500,
+        ease: easeOutExpo,
+      }
+    )
   }
 
   update(delay: number) {

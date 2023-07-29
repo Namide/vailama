@@ -141,15 +141,15 @@ export class Game {
 
     const bullet1 = new Bullet({
       bb: this.bb,
-      velocity: [0, 5]
+      velocity: [0, 7]
     })
     const bullet2 = new Bullet({
       bb: this.bb,
-      velocity: [0, 5]
+      velocity: [0, 7]
     })
     const { x, y, z } = this.player.position
-    bullet1.position.set(x + 0.1, y, z)
-    bullet2.position.set(x - 0.1, y, z)
+    bullet1.position.set(x + 0.2, y, z)
+    bullet2.position.set(x - 0.2, y, z)
     this.base.scene.add(bullet1, bullet2)
   }
 
