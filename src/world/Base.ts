@@ -6,7 +6,7 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { ColorifyShader } from 'three/addons/shaders/ColorifyShader.js';
 
 const SHADER_ENABLED = true
-const PIXEL_RENDER = 2
+const PIXEL_RENDER = 1
 
 export class Base {
 
