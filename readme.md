@@ -1,6 +1,6 @@
 # Vailama
 
-[![](./public/cover.png)](https://vailama.damien-doussaud.com/)
+[![](./public/cover.png)](https://vailama.namide.com/)
 
 <!-- ## Tools
 
@@ -14,4 +14,4 @@ Tiny SHMUP demo created for the [**Three.js Journey Challenge #001**](https://th
 Theme: _Game Boy_  
 Dates: _from July 19th to 2nd August 2023_
 
-Try it on [vailama.damien-doussaud.com](https://vailama.damien-doussaud.com/)
+Try it on [vailama.namide.com](https://vailama.namide.com/)
