@@ -25,7 +25,7 @@ export class Base {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xFFFFFF)
     
-    this.renderer = new THREE.WebGLRenderer( { antialias: true, canvas } );
+    this.renderer = new THREE.WebGLRenderer( { antialias: false, canvas } );
     this.renderer.useLegacyLights = false
     this.renderer.setAnimationLoop( this.tick.bind(this) );
 
