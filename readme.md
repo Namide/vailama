@@ -9,8 +9,6 @@
 - [nippleJS](https://yoannmoi.net/nipplejs/)
 - [Twon <sup>alpha version</sup>](https://twon.namide.com/) -->
 
-## Challenge
-
 Demo created for the [**Three.js Journey Challenge #001**](https://threejs-journey.com/) contest
 
 Theme: _Game Boy_  
