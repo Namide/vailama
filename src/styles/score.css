@@ -1,0 +1,61 @@
+
+.score-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #99C46E;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.score-screen.is-enabled {
+  opacity: 1;
+}
+
+.score-screen h2 {
+  font-size: 150px;
+  margin: auto 0;
+}
+
+.score-screen p {
+  font-size: 85px;
+  margin: 0;
+}
+
+.score-screen .credits {
+  font-size: 40px;
+  margin: auto 0;
+}
+
+@media only screen and (max-width: 640px) {
+  .score-screen h2 {
+    font-size: 90px;
+  }
+
+  .score-screen p {
+    font-size: 50px;
+  }
+
+  .score-screen .credits {
+    font-size: 20px;
+  }
+}
+
+.score-screen .credits a {
+  color: #99C46E;
+}
+
+.score-screen.is-enabled .credits a {
+  pointer-events: all;
+}
+
+.score-screen .credits a:hover {
+  color: #AADD77;
+}

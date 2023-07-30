@@ -1,4 +1,4 @@
-import './style.css'
+import './styles/index.css'
 import { Intro } from './world/Intro'
 import { Base } from './world/Base'
 import { StartScreen } from './world/StartScreen'

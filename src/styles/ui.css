@@ -1,0 +1,97 @@
+
+.ui {
+  position: absolute;
+  top: 0;
+  left: calc(50vw - 25vh);
+  width: 50vh;
+  height: 100%;
+
+  color: #99C46E;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ui:before, .ui:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: calc(50vw - 25vh);
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  transition: 1s ease-in-out;
+  opacity: 0;
+}
+
+.ui.is-enabled:before, .ui.is-enabled:after  {
+  opacity: 1;
+}
+
+.ui:before {
+  left: calc(25vh - 50vw - 8px);
+}
+
+.ui:after {
+  right: calc(25vh - 50vw - 8px);
+}
+
+.ui.is-enabled {
+  opacity: 1;
+}
+
+.ui .score {
+  position: absolute;
+  font-size: 50px;
+  top: 24px;
+  right: 24px;
+}
+
+.ui .life {
+  position: absolute;
+  font-size: 4px;
+  top: 24px;
+  left: 24px;
+  color: transparent;  
+  text-shadow: 0 0 0 #AADD77;
+}
+
+.ui .heart {
+  display: inline-block;
+  width: 1em;
+  margin: 0 28px 0 0;
+  height: 1em;
+  box-shadow:
+  1em 0em #AADD77,
+  2em 0em #AADD77,
+  4em 0em #AADD77,
+  5em 0em #AADD77,
+
+  0em 1em #AADD77,
+  1em 1em #AADD77,
+  2em 1em #AADD77,
+  3em 1em #AADD77,
+  4em 1em #AADD77,
+  5em 1em #AADD77,
+  6em 1em #AADD77,
+
+  0em 2em #AADD77,
+  1em 2em #AADD77,
+  2em 2em #AADD77,
+  3em 2em #AADD77,
+  4em 2em #AADD77,
+  5em 2em #AADD77,
+  6em 2em #AADD77,
+
+  1em 3em #AADD77,
+  2em 3em #AADD77,
+  3em 3em #AADD77,
+  4em 3em #AADD77,
+  5em 3em #AADD77,
+
+  2em 4em #AADD77,
+  3em 4em #AADD77,
+  4em 4em #AADD77,
+
+  3em 5em #AADD77;
+}

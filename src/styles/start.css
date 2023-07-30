@@ -1,0 +1,41 @@
+.container.is-before-appear {
+  opacity: 0;
+}
+
+.container.is-appear {
+  animation: appear-container 0.1s linear;
+}
+
+.container.is-appear > * {
+  animation: appear-item 0.1s linear;
+}
+
+@keyframes appear-container {
+  from {
+    transform: scaleX(0.1) scaleY(0.01);
+  }
+  30% {
+    transform: scaleX(1) scaleY(0.01);
+  }
+  60% {
+    transform: scaleY(0.02);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes appear-item {
+  from {
+    transform: scaleX(5) scaleY(20);
+  }
+  30% {
+    transform: scaleX(1) scaleY(100);
+  }
+  60% {
+    transform: scaleY(50);
+  }
+  to {
+    transform: none;
+  }
+}

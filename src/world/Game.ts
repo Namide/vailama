@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-// import { Tween, easeInOutExpo, easeOutExpo, easeInExpo } from "twon"
 import { Base } from './Base';
 import { Player } from '../meshes/Player';
 import { BoundingBox } from '../utils/BoundingBox';
@@ -256,11 +255,7 @@ export class Game {
     if (this.player && this.controller && this.life > 0) {
       if (this.controller.vector) {
         this.player.moveJoypad(this.controller.vector.x, this.controller.vector.y, delay)
-      } /* else if (this.controller.mousePosition) {
-        const { x, y } = this.controller?.mousePosition
-        let pos = this.base.screenTo3dPos(x, y)
-        this.player.moveTarget(pos.x, pos.y, delay)
-      } */ else {
+      } else {
         this.player.moveTranslate(
           this.controller.isLeft ? -1 : this.controller.isRight ? 1 : 0,
           this.controller.isTop ? 1 : this.controller.isBottom ? -1 : 0,

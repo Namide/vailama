@@ -21,6 +21,5 @@ export class Background extends THREE.Group {
     dir.target.position.set(5, -1, -1)
 
     this.add(dir);
-
   }
 }

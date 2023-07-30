@@ -15,12 +15,7 @@ export class Text extends THREE.Group {
         size: size,
         height: 0,
         curveSegments: 1,
-
         bevelEnabled: false,
-        // bevelThickness: 10,
-        // bevelSize: 8,
-        // bevelOffset: 0,
-        // bevelSegments: 5
       } );
       const material = new THREE.MeshBasicMaterial({ color });
       const mesh = new THREE.Mesh( geometry, material );

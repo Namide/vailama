@@ -3,8 +3,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export class GameBackground extends THREE.Group {
 
-  // mesh: THREE.Mesh
-
   constructor (onLoaded = () => void 0) {
     super()
     const loader = new GLTFLoader();

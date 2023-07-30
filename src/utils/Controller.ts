@@ -39,33 +39,6 @@ export class Controller {
         catchDistance: 150,
         color: '#99C46E33' // 'white'
       });
-      // setInterval(() => {
-      //   if (this.nipple) {
-      //     console.log(this.nipple.get(1))
-      //     console.log(this.nipple.get(1))
-      //   }
-        
-      // }, 250)
-      // .on('move', (data) => {
-      //   data.target.actives.
-      // })
-
-      // this.joystick.on('start end', function(evt, data) {
-      //   console.log('debug:', data);
-      // })
-      // .on('move', function(evt, data) {
-      //   console.log('debug:', data);
-      // })
-      // .on('dir:up plain:up dir:left plain:left dir:down ' +
-      //       'plain:down dir:right plain:right',
-      //       function(evt, data) {
-      // }
-      //      ).on('pressure', function(evt, data) {
-      //   console.log('debug:', {
-      //     pressure: data
-      //   });
-      // });
-
 
       (this.joystick
         .on('start end' as JoystickManagerEventTypes, () => {
@@ -74,25 +47,6 @@ export class Controller {
         .on('move', (_, data: { vector: { x: number, y: number } }) => {
           this.vector = data.vector
         })
-
-      // .on('dir:up plain:up dir:left plain:left dir:down ' +
-      //       'plain:down dir:right plain:right',
-      //       function(evt, data) {
-      // }
-      //      ).on('pressure', function(evt, data) {
-      //   console.log('debug:', {
-      //     pressure: data
-      //   });
-      // });
-
-      // this.nipple.on('added', function (_, joystick) {
-        
-      //     joystick.on('plain', function (evt) {
-      //         console.log(evt)
-      //     });
-      // }).on('removed', function (_, joystick) {
-      //     joystick.off('plain');
-      // });
 
     } else if (click) {
       (document.body.querySelector('.joystick') as HTMLDivElement).addEventListener("click", this.onClick);
@@ -172,6 +126,11 @@ export class Controller {
       case "ArrowDown":
         this.isBottom = true
         break;
+    }
+
+    if (this.joystick) {
+      (this.joystick as unknown as (nipplejs.Joystick)[])
+        .forEach(joystick => joystick.remove())
     }
   }
 

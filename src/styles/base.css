@@ -1,0 +1,47 @@
+@font-face {
+  font-family: VT323;
+  src: url("/assets/VT323-Regular.ttf") format("truetype");
+}
+
+:root {
+  font-family: VT323, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  font-weight: 400;
+
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  overscroll-behavior: none;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}

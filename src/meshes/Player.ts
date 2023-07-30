@@ -2,7 +2,6 @@ import * as THREE from 'three';
 import { BoundingBox } from '../utils/BoundingBox';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { Explode } from './Explode';
-// import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 export class Player extends THREE.Group {
 
@@ -115,6 +114,7 @@ export class Player extends THREE.Group {
   }
 
   fixPosition() {
+
     if (this.position.x < this.bb.left) {
       this.position.x = this.bb.left
     } else if (this.position.x > this.bb.right) {

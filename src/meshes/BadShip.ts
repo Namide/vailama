@@ -26,12 +26,6 @@ export class BadShip extends THREE.Group {
     loader.load(
       '/assets/ships.glb',
       ( gltf ) => {
-    
-        // const mesh = gltf.scene.children.find(mesh => mesh.name === 'ShipPlayer') as THREE.Mesh
-        // mesh.material = material
-        // mesh.scale.multiplyScalar(0.2)
-        // mesh.rotation.z = Math.PI
-
         const mine = gltf.scene.children.find(mesh => mesh.name === 'Mine') as THREE.Mesh
         const boule = gltf.scene.children.find(mesh => mesh.name === 'Boule') as THREE.Mesh
         const cross = gltf.scene.children.find(mesh => mesh.name === 'Cross') as THREE.Mesh
@@ -56,13 +50,23 @@ export class BadShip extends THREE.Group {
 
     this.bb = bb
     
-
     if (type === 0) {
       this.patternTypeBoule()
     } else if (type === 1) {
       this.patternTypeCross()
     } else if (type === 2) {
       this.patternMine()
+    }
+  }
+
+  get life () {
+    return this._life
+  }
+
+  set life (life: number) {
+    this._life = life
+    if (this._life < 1) {
+      this.destroy()
     }
   }
 
@@ -195,19 +199,7 @@ export class BadShip extends THREE.Group {
     setTimeout(this.dispose.bind(this), 15000)
   }
 
-  get life () {
-    return this._life
-  }
-
-  set life (life: number) {
-    this._life = life
-    if (this._life < 1) {
-      this.destroy()
-    }
-  }
-
   destroy() {
-
     const shift = new THREE.Vector3()
     const parent = this.parent
     for (let i = 0; parent && i < Math.round(this.size * 6); i++) {

@@ -26,8 +26,4 @@ export class BoundingBox {
     this.width = Math.abs(right - left)
     this.height = Math.abs(top - bottom)
   }
-
-  // isOut(x: number, y: number, marginX = 0, marginY = 0) {
-
-  // }
 }
