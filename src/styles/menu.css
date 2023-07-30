@@ -26,6 +26,15 @@
 .start-screen p {
   font-size: 85px;
   margin: 0;
+  animation: 2s blink infinite;
+  transition: none;
+}
+
+@keyframes blink {
+  from { opacity:1; }
+  5% { opacity:0; }
+  40% { opacity:0; }
+  45% { opacity:1; }
 }
 
 .start-screen span {
