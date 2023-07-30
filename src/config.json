@@ -1,5 +1,5 @@
 {
-  "FIRST_SCREEN": 2,
-  "GAME_DISABLE_INTRO": true,
+  "FIRST_SCREEN": 0,
+  "GAME_DISABLE_INTRO": false,
   "GAME_FIRST_WAVE": 0
 }

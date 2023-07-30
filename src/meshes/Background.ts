@@ -11,7 +11,6 @@ export class Background extends THREE.Group {
       ( gltf ) => {
         (gltf.scene.children[0] as THREE.Mesh).material = new THREE.MeshBasicMaterial({ vertexColors: true });
         (gltf.scene.children[1] as THREE.Mesh).material = new THREE.MeshBasicMaterial({ vertexColors: true });
-
         this.add(gltf.scene.children[0], gltf.scene.children[1])
         onLoaded()
       },

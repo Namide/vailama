@@ -25,10 +25,10 @@ export class StartScreen {
     document.body.style.background = '#637e53'
     document.body.querySelector('.container')?.classList.add('is-before-appear')
     this.base.scene.background = new THREE.Color(0x637e53)
+    this.base.mainLoop = this.tick.bind(this);
 
     this.background = new Background(this.onAssetLoaded.bind(this))
     this.base.scene.add(this.background)
-    this.base.mainLoop = this.tick.bind(this);
 
     this.controller = new Controller({ click: true })
   }
