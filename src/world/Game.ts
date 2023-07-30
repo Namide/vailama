@@ -209,7 +209,7 @@ export class Game {
       t2.dispose()
       this.dispose()
       this.onFinished(this)
-    }, 5000)
+    }, 2000)
   }
 
   lose() {
