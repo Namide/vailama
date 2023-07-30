@@ -5,7 +5,6 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { ColorifyShader } from 'three/addons/shaders/ColorifyShader.js';
 
-const SHADER_ENABLED = true
 const PIXEL_RENDER = 1
 
 export class Base {
@@ -30,7 +29,7 @@ export class Base {
     this.renderer.useLegacyLights = false
     this.renderer.setAnimationLoop( this.tick.bind(this) );
 
-    this.camera = this.normalMode()
+    this.camera = this.pixelMode()
 
     window.addEventListener( 'resize', this.onWindowResize.bind(this) );
   }
@@ -50,53 +49,27 @@ export class Base {
     return pos
   }
 
-  normalMode () {
+
+  pixelMode (green = true) {
     this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 50 );
     this.camera.position.z = 5;
 
-    this.composer = undefined
+    this.composer = new EffectComposer( this.renderer );
+    const renderPixelatedPass = new RenderPixelatedPass(6, this.scene, this.camera );
+    this.composer.addPass( renderPixelatedPass );
+
+    const outputPass = new OutputPass();
+    this.composer.addPass( outputPass );
+
+    if (green) {
+      const colorify = new ShaderPass( ColorifyShader );
+      colorify.uniforms[ 'color' ] = new THREE.Uniform( new THREE.Color( 0x99c46e ) );
+      this.composer.addPass( colorify );
+    }
 
     this.onWindowResize()
 
     return this.camera
-  }
-
-  orthoMode () {
-    const aspectRatio = window.innerWidth / window.innerHeight;
-
-    this.camera = new THREE.OrthographicCamera( -aspectRatio, aspectRatio, 1, -1, 1, 10 );
-    this.camera.position.z = 5;
-
-    this.onWindowResize()
-  }
-
-
-  pixelMode (green = true) {
-    if (!SHADER_ENABLED) {
-      return void 0
-    }
-
-    // if (!this.composer) {
-      // this.camera = new THREE.OrthographicCamera();
-      // this.camera.position.z = 5;
-      this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 50 );
-      this.camera.position.z = 5;
-  
-      this.composer = new EffectComposer( this.renderer );
-      const renderPixelatedPass = new RenderPixelatedPass(6, this.scene, this.camera );
-      this.composer.addPass( renderPixelatedPass );
-  
-      const outputPass = new OutputPass();
-      this.composer.addPass( outputPass );
-  
-      if (green) {
-        const colorify = new ShaderPass( ColorifyShader );
-        colorify.uniforms[ 'color' ] = new THREE.Uniform( new THREE.Color( 0x99c46e ) );
-        this.composer.addPass( colorify );
-      }
-  
-      this.onWindowResize()
-    // }
   }
 
   onWindowResize() {
@@ -105,7 +78,6 @@ export class Base {
 			this.composer.setSize(width, height );
       width /= PIXEL_RENDER // 8
       height /= PIXEL_RENDER // 8
-      // renderer.setSize( window.innerWidth, window.innerHeight );
     }
     this.renderer.setSize( width, height, false );
 

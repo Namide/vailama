@@ -29,19 +29,7 @@ export class Intro {
     this.gameBoy.rotation.y = Math.PI / 2
     this.gameBoy.rotation.z = 0
     this.base.scene.add( this.gameBoy )
-
-    // this.addLight()
   }
-
-  // addLight () {
-  //   const ambiant = new THREE.AmbientLight(0x666666);
-  //   this.base.scene.add(ambiant);
-
-  //   const dir = new THREE.DirectionalLight(0xFFFFFF, 1)
-  //   dir.position.set(this.base.camera.position.x, this.base.camera.position.y, this.base.camera.position.z)
-  //   dir.target.position.set(0, 0, 0)
-  //   this.base.scene.add(dir);
-  // }
 
   startAnimation () {
     const topTime = 5000
@@ -81,11 +69,10 @@ export class Intro {
       }
     );
 
-    setTimeout(this.onFinished.bind(this, this), topTime + zoomTime + 500)
-  }
-
-  dispose() {
-    this.base.scene.remove( this.gameBoy )
+    setTimeout(() => {
+      this.base.scene.remove( this.gameBoy )
+      this.onFinished(this)
+    }, topTime + zoomTime + 500)
   }
 
   protected onAssetLoaded () {
