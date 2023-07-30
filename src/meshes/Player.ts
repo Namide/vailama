@@ -46,24 +46,6 @@ export class Player extends THREE.Group {
     this.position.x += x * this.velocity * delay / 1000
     this.position.y += y * this.velocity * delay / 1000
     this.fixPosition()
-  } 
-
-  moveTarget(x: number, y: number, delay: number) {
-    const vec2d = new THREE.Vector2(x - this.position.x, y - this.position.y)
-
-    if (Math.sqrt(vec2d.x ** 2 + vec2d.y ** 2) < 0.05) {
-      return void 0
-    }
-
-    vec2d.normalize()
-
-    const inclination = Math.PI / 8
-    this.rotation.y = x * inclination
-    this.rotation.x = -y * inclination
-
-    this.position.x += vec2d.x * this.velocity * delay / 1000
-    this.position.y += vec2d.y * this.velocity * delay / 1000
-    this.fixPosition()
   }
 
   moveTranslate(x: -1 | 0 | 1, y: -1 | 0 | 1, delay: number) {
@@ -113,7 +95,7 @@ export class Player extends THREE.Group {
     }
   }
 
-  fixPosition() {
+  private fixPosition() {
 
     if (this.position.x < this.bb.left) {
       this.position.x = this.bb.left

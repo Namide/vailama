@@ -20,9 +20,8 @@ export class Game {
   player: Player
   bg: GameBackground
 
-  shootIntervalId: number = 0
-  appearIntervalId: number = 0
-  incrementWaveId: number = 0
+  shootIntervalId?: ReturnType<typeof setInterval>
+  appearIntervalId?: ReturnType<typeof setInterval>
 
   private _life = 3
   private _score = 0
@@ -186,20 +185,21 @@ export class Game {
     this.controller?.dispose()
 
     const t1 = new Tween(
-      this.player.position as { x?: number, y: number, z: number },
-      [{ x: -1, y: -3, z: 3 }, { x: 1, y: 4, z: 0 }],
+      this.player.position as { x: number, y: number, z: number },
+      { x: 0, y: 4, z: 2 }
+      ,
       {
-        duration: 3000,
+        duration: 2000,
         ease: easeInExpo,
       }
     )
 
     const t2 = new Tween(
-      this.player.rotation as { x?: number, y: number, z: number },
-      [{ x: Math.PI / 2, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
+      this.player.rotation as { y: number },
+      { y: 2 * Math.PI },
       {
-        delay: 0,
-        duration: 1500,
+        delay: 500,
+        duration: 2000,
         ease: easeInOutExpo,
       }
     )
@@ -279,7 +279,6 @@ export class Game {
     document.body.querySelector('.ui')?.classList.remove('is-enabled')
     clearInterval(this.shootIntervalId)
     clearInterval(this.appearIntervalId)
-    clearInterval(this.incrementWaveId)
     this.base.removeChildren()
   }
 
