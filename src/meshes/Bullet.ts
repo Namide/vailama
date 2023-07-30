@@ -53,7 +53,7 @@ export class Bullet extends THREE.Group {
     this.position.x += this.velocity[0] * delay / 1000
     this.position.y += this.velocity[1] * delay / 1000
 
-	  this.rotation.y += delay / 100;
+    this.rotation.y += delay / 100;
     
     if (this.position.y - this.height * 4 > this.bb.top) {
       this.isOut = true

@@ -75,7 +75,7 @@ export class Base {
   onWindowResize() {
     let { innerWidth: width, innerHeight: height } = window
     if (this.composer) {
-			this.composer.setSize(width, height );
+      this.composer.setSize(width, height );
       width /= PIXEL_RENDER // 8
       height /= PIXEL_RENDER // 8
     }
@@ -83,7 +83,7 @@ export class Base {
 
     if (this.camera instanceof THREE.OrthographicCamera) {
       const rendererSize = this.renderer.getSize( new THREE.Vector2() );
-			const aspectRatio = rendererSize.x / rendererSize.y;
+      const aspectRatio = rendererSize.x / rendererSize.y;
       const UNZOOM = 3
       this.camera.left = -aspectRatio * UNZOOM;
       this.camera.right = aspectRatio * UNZOOM;
@@ -99,7 +99,7 @@ export class Base {
   tick(time: number) {
 
     if (this.composer) {
-			this.composer.render();
+      this.composer.render();
     } else {
       this.renderer.render( this.scene, this.camera );
     }
