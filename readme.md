@@ -9,7 +9,7 @@
 - [nippleJS](https://yoannmoi.net/nipplejs/)
 - [Twon <sup>alpha version</sup>](https://twon.namide.com/) -->
 
-Demo created for the [**Three.js Journey Challenge #001**](https://threejs-journey.com/) contest
+Tiny SHMUP demo created for the [**Three.js Journey Challenge #001**](https://threejs-journey.com/) contest
 
 Theme: _Game Boy_  
 Dates: _from July 19th to 2nd August 2023_
