@@ -19,52 +19,52 @@ export class Base {
 
   private lastTime = 0
 
-  constructor (
+  constructor(
     canvas: HTMLCanvasElement
   ) {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xFFFFFF)
-    
-    this.renderer = new THREE.WebGLRenderer( { antialias: false, canvas } );
+
+    this.renderer = new THREE.WebGLRenderer({ antialias: false, canvas });
     this.renderer.useLegacyLights = false
-    this.renderer.setAnimationLoop( this.tick.bind(this) );
+    this.renderer.setAnimationLoop(this.tick.bind(this));
 
     this.camera = this.pixelMode()
 
-    window.addEventListener( 'resize', this.onWindowResize.bind(this) );
+    window.addEventListener('resize', this.onWindowResize.bind(this));
   }
 
-  screenTo3dPos (x: number, y: number) {
+  screenTo3dPos(x: number, y: number) {
     let vec = new THREE.Vector3();
     let pos = new THREE.Vector3();
 
-    vec.set(x * 2 -1, -y * 2 + 1, 0 );
-    vec.unproject( this.camera );
-    vec.sub( this.camera.position ).normalize();
+    vec.set(x * 2 - 1, -y * 2 + 1, 0);
+    vec.unproject(this.camera);
+    vec.sub(this.camera.position).normalize();
 
     let distance = -this.camera.position.z / vec.z;
 
-    pos.copy( this.camera.position ).add( vec.multiplyScalar( distance ) );
+    pos.copy(this.camera.position).add(vec.multiplyScalar(distance));
 
     return pos
   }
 
 
-  pixelMode (green = true) {
-    this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 50 );
+  pixelMode(green = true) {
+    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 50);
     this.camera.position.z = 5;
 
-    this.composer = new EffectComposer( this.renderer );
-    const renderPixelatedPass = new RenderPixelatedPass(6, this.scene, this.camera );
-    this.composer.addPass( renderPixelatedPass );
+    this.composer = new EffectComposer(this.renderer);
+    const renderPixelatedPass = new RenderPixelatedPass(6, this.scene, this.camera);
+    this.composer.addPass(renderPixelatedPass);
 
     const outputPass = new OutputPass();
-    this.composer.addPass( outputPass );
+    this.composer.addPass(outputPass);
 
     if (green) {
-      const colorify = new ShaderPass( ColorifyShader );
-      colorify.uniforms[ 'color' ] = new THREE.Uniform( new THREE.Color( 0x99c46e ) );
-      this.composer.addPass( colorify );
+      const colorify = new ShaderPass(ColorifyShader);
+      colorify.uniforms['color'] = new THREE.Uniform(new THREE.Color(0x99c46e));
+      this.composer.addPass(colorify);
     }
 
     this.onWindowResize()
@@ -75,14 +75,14 @@ export class Base {
   onWindowResize() {
     let { innerWidth: width, innerHeight: height } = window
     if (this.composer) {
-      this.composer.setSize(width, height );
+      this.composer.setSize(width, height);
       width /= PIXEL_RENDER // 8
       height /= PIXEL_RENDER // 8
     }
-    this.renderer.setSize( width, height, false );
+    this.renderer.setSize(width, height, false);
 
     if (this.camera instanceof THREE.OrthographicCamera) {
-      const rendererSize = this.renderer.getSize( new THREE.Vector2() );
+      const rendererSize = this.renderer.getSize(new THREE.Vector2());
       const aspectRatio = rendererSize.x / rendererSize.y;
       const UNZOOM = 3
       this.camera.left = -aspectRatio * UNZOOM;
@@ -101,7 +101,7 @@ export class Base {
     if (this.composer) {
       this.composer.render();
     } else {
-      this.renderer.render( this.scene, this.camera );
+      this.renderer.render(this.scene, this.camera);
     }
 
     this.mainLoop(time, time - this.lastTime)

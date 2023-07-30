@@ -2,20 +2,20 @@ import nipplejs from 'nipplejs';
 import { JoystickManagerEventTypes } from 'nipplejs';
 
 export class Controller {
-  
+
   isTop = false
   isLeft = false
   isRight = false
   isBottom = false
   joystick?: nipplejs.JoystickManager
-  vector?: { x: number, y: number}
+  vector?: { x: number, y: number }
 
   canvas = document.body.querySelector('canvas') as HTMLCanvasElement
 
   screenSize = { w: innerWidth, h: innerHeight }
   mousePosition: { x: number, y: number } | false = false
-  
-  constructor ({ joystick = false, click = false }) {
+
+  constructor({ joystick = false, click = false }) {
     this.onKeyDown = this.onKeyDown.bind(this)
     this.onKeyUp = this.onKeyUp.bind(this)
     this.onMouseDown = this.onMouseDown.bind(this)
@@ -32,7 +32,7 @@ export class Controller {
     window.addEventListener("resize", this.onResize);
 
     if (joystick) {
-      
+
       this.joystick = nipplejs.create({
         zone: document.body.querySelector('.joystick') as HTMLDivElement,
         mode: 'semi', // 'semi',
@@ -57,41 +57,41 @@ export class Controller {
       this.canvas.addEventListener("touchstart", this.onTouchStart);
       this.canvas.addEventListener("touchmove", this.onTouchMove);
       this.canvas.addEventListener("touchend", this.onTouchEnd);
-      
+
     }
   }
 
-  private onTouchStart (event: TouchEvent) {
+  private onTouchStart(event: TouchEvent) {
     this.mousePosition = {
       x: event.touches[0].clientX / this.screenSize.w,
       y: event.touches[0].clientY / this.screenSize.h
     }
     window.addEventListener('touchmove', this.onTouchMove)
   }
-  private onTouchMove (event: TouchEvent) {
+  private onTouchMove(event: TouchEvent) {
     this.mousePosition = {
       x: event.touches[0].clientX / this.screenSize.w,
       y: event.touches[0].clientY / this.screenSize.h
     }
   }
-  private onTouchEnd () {
+  private onTouchEnd() {
     window.removeEventListener('touchmove', this.onTouchMove)
   }
 
-  private onMouseDown (event: MouseEvent) {
+  private onMouseDown(event: MouseEvent) {
     this.mousePosition = {
       x: event.clientX / this.screenSize.w,
       y: event.clientY / this.screenSize.h
     }
     window.addEventListener('mousemove', this.onMouseMove)
   }
-  private onMouseMove (event: MouseEvent) {
+  private onMouseMove(event: MouseEvent) {
     this.mousePosition = {
       x: event.clientX / this.screenSize.w,
       y: event.clientY / this.screenSize.h
     }
   }
-  private onMouseUp (event: MouseEvent) {
+  private onMouseUp(event: MouseEvent) {
     this.mousePosition = {
       x: event.clientX / this.screenSize.w,
       y: event.clientY / this.screenSize.h
@@ -99,19 +99,19 @@ export class Controller {
     window.removeEventListener('mousemove', this.onMouseMove)
   }
 
-  private onClick () {
+  private onClick() {
     this.mousePosition = {
       x: 1,
       y: 1
     }
   }
 
-  private onResize () {
+  private onResize() {
     this.mousePosition = false
     this.screenSize = { w: innerWidth, h: innerHeight }
   }
 
-  private onKeyDown (event: KeyboardEvent) {
+  private onKeyDown(event: KeyboardEvent) {
     this.mousePosition = false
     switch (event.key) {
       case "ArrowLeft":
@@ -134,7 +134,7 @@ export class Controller {
     }
   }
 
-  private onKeyUp (event: KeyboardEvent) {
+  private onKeyUp(event: KeyboardEvent) {
     this.mousePosition = false
     switch (event.key) {
       case "ArrowLeft":
@@ -152,7 +152,7 @@ export class Controller {
     }
   }
 
-  dispose () {
+  dispose() {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('keyup', this.onKeyUp);
     this.canvas.removeEventListener("mousedown", this.onMouseDown);

@@ -30,7 +30,7 @@ export class Game {
 
   onFinished: (game: Game) => unknown
 
-  constructor (
+  constructor(
     base: Base,
     onFinished: (game: Game) => unknown
   ) {
@@ -64,11 +64,11 @@ export class Game {
     this.base.mainLoop = this.tick.bind(this);
   }
 
-  get life () {
+  get life() {
     return this._life
   }
 
-  set life (life: number) {
+  set life(life: number) {
     (document.body.querySelector('.ui .life') as HTMLDivElement).innerHTML =
       '<span class="heart"></span>'.repeat(life > -1 ? life : 0)
     this._life = life
@@ -77,17 +77,17 @@ export class Game {
     }
   }
 
-  get score () {
+  get score() {
     return this._score
   }
 
-  set score (score: number) {
+  set score(score: number) {
     (document.body.querySelector('.ui .score') as HTMLDivElement).innerHTML =
       score.toFixed(0) + ' PTS'
     this._score = score
   }
 
-  addLight () {
+  addLight() {
     const ambiant = new THREE.AmbientLight(0x666666);
     this.base.scene.add(ambiant);
 
@@ -97,8 +97,8 @@ export class Game {
     this.base.scene.add(dir);
   }
 
-  startAnimation () {
-    
+  startAnimation() {
+
     // Appear
     this.player.position.x = -5
     this.player.position.y = -2
@@ -151,12 +151,12 @@ export class Game {
     this.base.scene.add(bullet1, bullet2)
   }
 
-  addBadShip () {
+  addBadShip() {
     const badShip = new BadShip({ bb: this.bb, type: this.wave })
     this.base.scene.add(badShip)
   }
 
-  startPlay () {
+  startPlay() {
     this.controller = new Controller({ joystick: true })
     this.shootIntervalId = setInterval(this.shoot.bind(this), 750)
     this.changeWave(GAME_FIRST_WAVE)
@@ -262,7 +262,7 @@ export class Game {
           delay
         )
       }
-  
+
 
       if (!this.player.invincible) {
         const collide = badShips.find(badShip => badShip.position.distanceTo(this.player.position) < badShip.size / 2)
@@ -282,7 +282,7 @@ export class Game {
     this.base.removeChildren()
   }
 
-  protected onAssetLoaded () {
+  protected onAssetLoaded() {
     this.loadCount--
     if (this.loadCount === 0) {
       requestAnimationFrame(this.startAnimation.bind(this))

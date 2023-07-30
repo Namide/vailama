@@ -15,7 +15,7 @@ export class ScoreScreen {
 
   onFinished: (intro: ScoreScreen) => unknown
 
-  constructor (
+  constructor(
     game: Game,
     onFinished: (intro: ScoreScreen) => unknown
   ) {
@@ -59,7 +59,7 @@ export class ScoreScreen {
     this.base.removeChildren()
   }
 
-  protected onAssetLoaded () {
+  protected onAssetLoaded() {
     this.loadCount--
     if (this.loadCount === 0) {
       document.body.querySelector('.score-screen')?.classList.add('is-enabled')

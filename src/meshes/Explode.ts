@@ -8,10 +8,10 @@ type TweenObject = { x?: number, y?: number, z?: number }
 
 export class Explode extends THREE.Group {
 
-  constructor ({ size = 0.1 } = {}) {
+  constructor({ size = 0.1 } = {}) {
     super()
-    
-    const mesh = new THREE.Mesh( geometry, material );
+
+    const mesh = new THREE.Mesh(geometry, material);
     mesh.scale.setScalar(size)
     this.add(mesh)
 

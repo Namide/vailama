@@ -31,10 +31,21 @@
 }
 
 @keyframes blink {
-  from { opacity:1; }
-  5% { opacity:0; }
-  40% { opacity:0; }
-  45% { opacity:1; }
+  from {
+    opacity: 1;
+  }
+
+  5% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 1;
+  }
 }
 
 .start-screen span {

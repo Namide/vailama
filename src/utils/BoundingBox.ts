@@ -7,7 +7,7 @@ export class BoundingBox {
   width: number
   height: number
 
-  constructor ({
+  constructor({
     left,
     right,
     top,

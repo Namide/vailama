@@ -16,40 +16,40 @@ export class BadShip extends THREE.Group {
 
   static count = 1
   static geometries = [
-    new THREE.BoxGeometry( 0.4, 0.4, 0.4 ),
-    new THREE.BoxGeometry( 0.6, 0.6, 0.6 ),
-    new THREE.BoxGeometry( 1, 1, 1 ),
+    new THREE.BoxGeometry(0.4, 0.4, 0.4),
+    new THREE.BoxGeometry(0.6, 0.6, 0.6),
+    new THREE.BoxGeometry(1, 1, 1),
   ]
-  static meshes: [ THREE.BufferGeometry, THREE.Material ][] = []
-  static loadMeshes (onLoaded = () => void 0) {
+  static meshes: [THREE.BufferGeometry, THREE.Material][] = []
+  static loadMeshes(onLoaded = () => void 0) {
     const loader = new GLTFLoader();
     loader.load(
       '/assets/ships.glb',
-      ( gltf ) => {
+      (gltf) => {
         const mine = gltf.scene.children.find(mesh => mesh.name === 'Mine') as THREE.Mesh
         const boule = gltf.scene.children.find(mesh => mesh.name === 'Boule') as THREE.Mesh
         const cross = gltf.scene.children.find(mesh => mesh.name === 'Cross') as THREE.Mesh
 
-        BadShip.meshes[0] = [ boule.geometry, new THREE.MeshBasicMaterial({ vertexColors: true }) ]
-        BadShip.meshes[1] = [ cross.geometry, new THREE.MeshBasicMaterial({ vertexColors: true }) ]
-        BadShip.meshes[2] = [ mine.geometry, new THREE.MeshBasicMaterial({ vertexColors: true }) ]
-    
+        BadShip.meshes[0] = [boule.geometry, new THREE.MeshBasicMaterial({ vertexColors: true })]
+        BadShip.meshes[1] = [cross.geometry, new THREE.MeshBasicMaterial({ vertexColors: true })]
+        BadShip.meshes[2] = [mine.geometry, new THREE.MeshBasicMaterial({ vertexColors: true })]
+
         onLoaded()
       },
     );
   }
 
-  constructor ({
-      bb,
-      type
-    }: { bb: BoundingBox, type: number }) {
+  constructor({
+    bb,
+    type
+  }: { bb: BoundingBox, type: number }) {
 
     super()
 
     BadShip.count++
 
     this.bb = bb
-    
+
     if (type === 0) {
       this.patternTypeBoule()
     } else if (type === 1) {
@@ -59,21 +59,21 @@ export class BadShip extends THREE.Group {
     }
   }
 
-  get life () {
+  get life() {
     return this._life
   }
 
-  set life (life: number) {
+  set life(life: number) {
     this._life = life
     if (this._life < 1) {
       this.destroy()
     }
   }
 
-  patternTypeBoule () {
+  patternTypeBoule() {
     this.size = 0.4
 
-    this.add( new THREE.Mesh( ...BadShip.meshes[0] ) );
+    this.add(new THREE.Mesh(...BadShip.meshes[0]));
     this.scale.multiplyScalar(0.2)
 
     this.position.x = this.bb.left * 2
@@ -81,10 +81,10 @@ export class BadShip extends THREE.Group {
     this.tweens.push(new Tween(
       this.position as TweenObject,
       [0, 0.3, 0.5, 0.7, 0.8, 0.9, 1.1, 1.2]
-      .map((y, index) => ({
-        x: this.bb.width * (index % 2) + this.bb.left,
-        y: this.bb.top - y * this.bb.height
-      })),
+        .map((y, index) => ({
+          x: this.bb.width * (index % 2) + this.bb.left,
+          y: this.bb.top - y * this.bb.height
+        })),
       {
         delay: 0,
         duration: 20000,
@@ -109,11 +109,11 @@ export class BadShip extends THREE.Group {
     setTimeout(this.dispose.bind(this), 20000)
   }
 
-  patternTypeCross () {
+  patternTypeCross() {
     this.size = 0.6
     this.life = 3
 
-    this.add( new THREE.Mesh( ...BadShip.meshes[1] ) );
+    this.add(new THREE.Mesh(...BadShip.meshes[1]));
     this.scale.multiplyScalar(0.4)
 
     const baseX = (BadShip.count % 4) * this.bb.width / 3 + this.bb.left
@@ -124,10 +124,10 @@ export class BadShip extends THREE.Group {
     this.tweens.push(new Tween(
       this.position as TweenObject,
       (new Array(13)).fill(1).map((_, index) => index * 0.1)
-      .map((y, index) => ({
-        x: baseX + this.bb.width / 2 * (index % 2) - this.bb.width / 4,
-        y: this.bb.top - y * this.bb.height
-      })),
+        .map((y, index) => ({
+          x: baseX + this.bb.width / 2 * (index % 2) - this.bb.width / 4,
+          y: this.bb.top - y * this.bb.height
+        })),
       {
         delay: 0,
         duration: 15000,
@@ -153,17 +153,17 @@ export class BadShip extends THREE.Group {
     setTimeout(this.dispose.bind(this), 15000)
   }
 
-  patternMine () {
+  patternMine() {
     this.size = 1
     this.life = 6
 
-    this.add( new THREE.Mesh( ...BadShip.meshes[2] ) );
+    this.add(new THREE.Mesh(...BadShip.meshes[2]));
     this.scale.multiplyScalar(0.5)
 
     this.position.x = this.bb.left
     this.position.y = this.bb.top * 1.5
 
-    this.tweens.push( new Tween(
+    this.tweens.push(new Tween(
       this.position as TweenObject,
       [
         { x: 0, y: this.bb.top / 2 },
@@ -219,7 +219,7 @@ export class BadShip extends THREE.Group {
     this.dispose()
   }
 
-  dispose () {
+  dispose() {
     this.tweens.forEach(tween => tween.dispose())
     if (this.parent) {
       this.parent.remove(this)

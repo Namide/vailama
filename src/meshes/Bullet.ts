@@ -5,15 +5,15 @@ import { Tween, easeOutExpo } from 'twon';
 
 const size = [0.04, 0.15]
 
-const map = new THREE.TextureLoader().load( '/assets/bullet.png' );
-const material = new THREE.SpriteMaterial( {
+const map = new THREE.TextureLoader().load('/assets/bullet.png');
+const material = new THREE.SpriteMaterial({
   map: map,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
 
   depthTest: false,
   transparent: true
-} );
+});
 
 export class Bullet extends THREE.Group {
 
@@ -23,7 +23,7 @@ export class Bullet extends THREE.Group {
 
   isOut = false
 
-  constructor (
+  constructor(
     {
       bb,
       velocity,
@@ -34,8 +34,8 @@ export class Bullet extends THREE.Group {
     this.bb = bb
     this.velocity = velocity
     this.height = size[1]
-    
-    const mesh = new THREE.Sprite( material );
+
+    const mesh = new THREE.Sprite(material);
     mesh.scale.set(1, 1, 1)
     this.add(mesh)
 
@@ -54,7 +54,7 @@ export class Bullet extends THREE.Group {
     this.position.y += this.velocity[1] * delay / 1000
 
     this.rotation.y += delay / 100;
-    
+
     if (this.position.y - this.height * 4 > this.bb.top) {
       this.isOut = true
     }

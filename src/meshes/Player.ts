@@ -9,7 +9,7 @@ export class Player extends THREE.Group {
   velocity = 2
   invincible = false
 
-  constructor (
+  constructor(
     onLoaded = () => void 0,
     {
       bb
@@ -20,7 +20,7 @@ export class Player extends THREE.Group {
     const loader = new GLTFLoader();
     loader.load(
       '/assets/ships.glb',
-      ( gltf ) => {
+      (gltf) => {
 
         const mesh = gltf.scene.children.find(mesh => mesh.name === 'ShipPlayer') as THREE.Mesh
         mesh.material = new THREE.MeshBasicMaterial({ vertexColors: true })
@@ -34,15 +34,15 @@ export class Player extends THREE.Group {
     );
 
     this.bb = bb
-    
+
     onLoaded()
   }
 
-  moveJoypad (x: number, y: number, delay: number) {
+  moveJoypad(x: number, y: number, delay: number) {
     const inclination = Math.PI / 8
     this.rotation.y = x * inclination
     this.rotation.x = -y * inclination
-    
+
     this.position.x += x * this.velocity * delay / 1000
     this.position.y += y * this.velocity * delay / 1000
     this.fixPosition()
@@ -51,14 +51,14 @@ export class Player extends THREE.Group {
   moveTranslate(x: -1 | 0 | 1, y: -1 | 0 | 1, delay: number) {
     const diag = x !== 0 && y !== 0 ? Math.sqrt(2) / 2 : 1
     const inclination = Math.PI * diag / 8
-    this.position.x += diag  * x * this.velocity * delay / 1000
-    this.position.y += diag  * y * this.velocity * delay / 1000
+    this.position.x += diag * x * this.velocity * delay / 1000
+    this.position.y += diag * y * this.velocity * delay / 1000
     this.rotation.y = x * inclination
     this.rotation.x = -y * inclination
     this.fixPosition()
   }
 
-  setInvincible (time: number = 2000) {
+  setInvincible(time: number = 2000) {
     this.invincible = true
     this.visible = false
     const intervalId = setInterval(() => {

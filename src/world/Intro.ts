@@ -12,7 +12,7 @@ export class Intro {
 
   onFinished: (intro: Intro) => unknown
 
-  constructor (
+  constructor(
     base: Base,
     onFinished: (intro: Intro) => unknown
   ) {
@@ -22,18 +22,18 @@ export class Intro {
     this.base.pixelMode(false)
     this.base.camera.position.z = 5;
     this.base.scene.background = new THREE.Color(0xFFFFFF)
-    
+
     this.gameBoy = new GameBoy(this.onAssetLoaded.bind(this))
     this.gameBoy.position.y = -10
     this.gameBoy.position.z = -3
     this.gameBoy.rotation.y = Math.PI / 2
     this.gameBoy.rotation.z = 0
-    this.base.scene.add( this.gameBoy )
+    this.base.scene.add(this.gameBoy)
   }
 
-  startAnimation () {
+  startAnimation() {
     const topTime = 5000
-    const topEase = [.36,.54,.68,.99] as [number, number, number, number]
+    const topEase = [.36, .54, .68, .99] as [number, number, number, number]
     const zoomTime = 1000
     new Tween(
       this.gameBoy.position as { x?: number, y: number, z: number },
@@ -70,12 +70,12 @@ export class Intro {
     );
 
     setTimeout(() => {
-      this.base.scene.remove( this.gameBoy )
+      this.base.scene.remove(this.gameBoy)
       this.onFinished(this)
     }, topTime + zoomTime + 500)
   }
 
-  protected onAssetLoaded () {
+  protected onAssetLoaded() {
     this.loadCount--
     if (this.loadCount === 0) {
       requestAnimationFrame(this.startAnimation.bind(this))

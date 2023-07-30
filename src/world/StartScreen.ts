@@ -13,7 +13,7 @@ export class StartScreen {
 
   private loadCount = 1
 
-  constructor (
+  constructor(
     base: Base,
     onFinished: (intro: StartScreen) => unknown
   ) {
@@ -33,7 +33,7 @@ export class StartScreen {
     this.controller = new Controller({ click: true })
   }
 
-  startAnimation () {
+  startAnimation() {
     const container = document.body.querySelector('.container')
     container?.classList.add('is-appear')
     container?.classList.remove('is-before-appear')
@@ -59,7 +59,7 @@ export class StartScreen {
     this.base.removeChildren()
   }
 
-  protected onAssetLoaded () {
+  protected onAssetLoaded() {
     this.loadCount--
     if (this.loadCount === 0) {
       document.body.querySelector('.start-screen')?.classList.add('is-enabled')

@@ -9,16 +9,16 @@ import { FIRST_SCREEN } from './config.json'
 const canvas = document.body.querySelector('canvas')
 if (canvas) {
   const base = new Base(canvas)
-  switch(FIRST_SCREEN) {
+  switch (FIRST_SCREEN) {
     case 1:
       switchToMenu(base)
-    break;
+      break;
     case 2:
       switchToGame(base)
-    break;
+      break;
     case 3:
       switchToScore({ score: 30, life: 1, base } as Game)
-    break;
+      break;
     default:
       startIntro(base)
   }
@@ -26,28 +26,28 @@ if (canvas) {
   throw new Error('Canvas not found')
 }
 
-function startIntro (base: Base) {
+function startIntro(base: Base) {
   new Intro(
     base,
     () => switchToMenu(base)
   )
 }
 
-function switchToMenu (base: Base) {
+function switchToMenu(base: Base) {
   new StartScreen(
     base,
     () => switchToGame(base)
   )
 }
 
-function switchToGame (base: Base) {
+function switchToGame(base: Base) {
   new Game(
     base,
     (game) => switchToScore(game)
   )
 }
 
-function switchToScore (game: Game) {
+function switchToScore(game: Game) {
   new ScoreScreen(
     game,
     (score) => switchToMenu(score.base)

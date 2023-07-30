@@ -17,7 +17,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
-html, body {
+html,
+body {
   overscroll-behavior: none;
 }
 
